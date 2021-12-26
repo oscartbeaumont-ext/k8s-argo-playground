@@ -1,4 +1,4 @@
 FROM alpine
 
-CMD ["echo" "\"Hello World\"", "&&", "pause", "1000" ]
+CMD [ "echo", "\"Hello World\"", "&&", "pause", "1000" ]
 
