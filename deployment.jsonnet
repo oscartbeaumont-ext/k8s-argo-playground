@@ -14,9 +14,7 @@ function(some_value = "Hello World!") [
         },
         spec: {
             selector: {
-                matchLabels: {
-                    "app.kubernetes.io/name": "echoserver",
-                },
+                "app.kubernetes.io/name": "echoserver",
             },
             ports: [
                 {
