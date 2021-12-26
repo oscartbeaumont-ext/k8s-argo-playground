@@ -1,7 +1,7 @@
 {
-    v1:: {
+    appsv1:: {
 
-        local ApiVersion = { apiVersion: "v1" },
+        local ApiVersion = { apiVersion: "apps/v1" },
 
         local Metadata(name) = {
             metadata: {
@@ -12,22 +12,8 @@
             },
         },
 
-        ReplicationController(name): ApiVersion + Metadata(name) {
-            kind: "ReplicationController",
-        },
-
-        Service(name): ApiVersion + Metadata(name) {
-            kind: "Service",
-        },
-
         Deployment(name): ApiVersion + Metadata(name) {
             kind: "Deployment",
         },
     },
-
-    pair_list_ex(tab, kfield, vfield)::
-        [{ [kfield]: k, [vfield]: tab[k] } for k in std.objectFields(tab)],
-
-    pair_list(tab)::
-        self.pair_list_ex(tab, "name", "value"),
 }
