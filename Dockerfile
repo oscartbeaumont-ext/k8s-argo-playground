@@ -1,4 +1,4 @@
-FROM alpine
+FROM nginx
 
-CMD [ "echo", "\"Hello World\"", "&&", "pause", "1000" ]
+COPY index.html usr/share/nginx/html/
 

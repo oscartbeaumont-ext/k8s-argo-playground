@@ -1,6 +1,6 @@
 local Kube = import "kube.libsonnet";
 
-function(some_value = "staging") [
+function(git_commit_hash = "staging", domain = "fallback.otbeaumont.me") [
     Kube.v1.Service("echoserver") {
         metadata+: {
             labels: {
@@ -9,7 +9,7 @@ function(some_value = "staging") [
             annotations: {
                 "kubernetes.io/description": "Echo Server",
                 "link.argocd.argoproj.io/external-link": "https://otbeaumont.me",
-                "otbeaumont.me/test": some_value,
+                "otbeaumont.me/test": domain,
             },
         },
         spec: {
@@ -34,7 +34,7 @@ function(some_value = "staging") [
             annotations: {
                 "kubernetes.io/description": "Echo Server",
                 "link.argocd.argoproj.io/external-link": "https://otbeaumont.me",
-                "otbeaumont.me/test": some_value,
+                "otbeaumont.me/test": domain,
             },
         },
         spec: {
@@ -54,18 +54,13 @@ function(some_value = "staging") [
                     containers: [
                         {
                             name: "echoserver",
-                            image: "k8s.gcr.io/echoserver:1.4",
+                            image: "ghcr.io/oscartbeaumont-ext/k8s-argo-playground:" + git_commit_hash,
                             ports: [
                                 {
                                     containerPort: 8080,
                                 },
                             ],
                         },
-                        {
-                            name: "testing",
-                            image: "ghcr.io/oscartbeaumont-ext/k8s-argo-playground" + ":" + some_value,
-                        
-                        }
                     ],
                 },
             },
