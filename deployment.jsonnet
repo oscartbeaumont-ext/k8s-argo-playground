@@ -22,7 +22,7 @@ function(git_commit_hash = "staging", domain = "fallback.otbeaumont.me", node_po
                     protocol: "TCP",
                     port: 80,
                     targetPort: 8080,
-                    nodePort: node_port,
+                    nodePort: std.parseInt(node_port),
                 },
             ],
         },
