@@ -1,6 +1,6 @@
 local Kube = import "kube.libsonnet";
 
-function(git_commit_hash = "staging", domain = "fallback.otbeaumont.me") [
+function(git_commit_hash = "staging", domain = "fallback.otbeaumont.me", node_port = "30955") [
     Kube.v1.Service("echoserver") {
         metadata+: {
             labels: {
@@ -13,6 +13,7 @@ function(git_commit_hash = "staging", domain = "fallback.otbeaumont.me") [
             },
         },
         spec: {
+            type: "NodePort",
             selector: {
                 "app.kubernetes.io/name": "echoserver",
             },
@@ -21,6 +22,7 @@ function(git_commit_hash = "staging", domain = "fallback.otbeaumont.me") [
                     protocol: "TCP",
                     port: 80,
                     targetPort: 8080,
+                    nodePort: node_port,
                 },
             ],
         },
