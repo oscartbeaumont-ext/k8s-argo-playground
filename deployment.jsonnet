@@ -21,7 +21,7 @@ function(git_commit_hash = "staging", domain = "fallback.otbeaumont.me", node_po
                 {
                     protocol: "TCP",
                     port: 80,
-                    targetPort: 8080,
+                    targetPort: 80,
                     nodePort: std.parseInt(node_port),
                 },
             ],
@@ -59,7 +59,7 @@ function(git_commit_hash = "staging", domain = "fallback.otbeaumont.me", node_po
                             image: "ghcr.io/oscartbeaumont-ext/k8s-argo-playground:" + git_commit_hash,
                             ports: [
                                 {
-                                    containerPort: 8080,
+                                    containerPort: 80,
                                 },
                             ],
                         },
