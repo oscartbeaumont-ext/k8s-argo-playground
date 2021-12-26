@@ -1,6 +1,6 @@
 local Kube = import "kube.libsonnet";
 
-function(some_value = "Hello World!") [
+function(some_value = "staging") [
     Kube.v1.Service("echoserver") {
         metadata+: {
             labels: {
@@ -38,7 +38,7 @@ function(some_value = "Hello World!") [
             },
         },
         spec: {
-            replicas: 5,
+            replicas: 1,
             selector: {
                 matchLabels: {
                     "app.kubernetes.io/name": "echoserver",
@@ -61,6 +61,11 @@ function(some_value = "Hello World!") [
                                 },
                             ],
                         },
+                        {
+                            name: "testing",
+                            image: "ghcr.io/oscartbeaumont-ext/k8s-argo-playground" + ":" + some_value,
+                        
+                        }
                     ],
                 },
             },
