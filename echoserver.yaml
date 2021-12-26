@@ -9,6 +9,8 @@ metadata:
   name: echoserver
   labels:
     app: echoserver
+  annotations:
+    link.argocd.argoproj.io/external-link: https://otbeaumont.me
 spec:
   replicas: 1
   selector:
