@@ -12,7 +12,7 @@ metadata:
   annotations:
     link.argocd.argoproj.io/external-link: https://otbeaumont.me
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: echoserver
