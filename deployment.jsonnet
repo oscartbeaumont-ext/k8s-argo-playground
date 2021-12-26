@@ -1,9 +1,7 @@
 local Kube = import "kube.libsonnet";
 
-{
-    some_value:: "Hello World!",
-
-    "echoserver.yaml": Kube.v1.Deployment("echoserver") {
+function(some_value = "Hello World!") [
+    Kube.v1.Deployment("echoserver") {
         metadata+: {
             name: "echoserver",
             labels: {
@@ -11,7 +9,8 @@ local Kube = import "kube.libsonnet";
             },
             annotations: {
                 "kubernetes.io/description": "Echo Server",
-                "link.argocd.argoproj.io/external-link": "https://otbeaumont.me"
+                "link.argocd.argoproj.io/external-link": "https://otbeaumont.me",
+                "otbeaumont.me/test": some_value,
             },
         },
         spec: {
@@ -38,4 +37,4 @@ local Kube = import "kube.libsonnet";
             },
         },
     }
-}
+]
