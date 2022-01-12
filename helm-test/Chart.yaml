@@ -1,0 +1,8 @@
+apiVersion: v2
+version: 1.0.0
+name: helm-test
+
+dependencies:
+- name: couchdb
+  version: "3.3.4"
+  repository: "https://apache.github.io/couchdb-helm"
