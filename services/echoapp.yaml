@@ -1,0 +1,23 @@
+kind: GitRepository
+metadata:
+  name: echoapp
+spec:
+  url: ssh://git@github.com/oscartbeaumont-ext/k8s-argo-playground.git
+  # ref:
+  #   semver: "1.x"
+---
+kind: Kustomization
+metadata:
+  name: echoapp
+spec:
+  sourceRef:
+    kind: GitRepository
+    name: echoapp
+  path: ./manifests
+  # patchesStrategicMerge:
+  #   - apiVersion: apps/v1
+  #     kind: Deployment
+  #     metadata:
+  #       name: app
+  #     spec:
+  #       replicas: 2
