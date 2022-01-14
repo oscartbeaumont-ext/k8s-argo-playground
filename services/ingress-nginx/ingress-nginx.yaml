@@ -1,0 +1,19 @@
+kind: HelmRepository
+metadata:
+  name: nginx-stable
+spec:
+  url: https://helm.nginx.com/stable
+---
+kind: HelmRelease
+metadata:
+  name: ingress-nginx
+spec:
+  chart:
+    spec:
+      chart: ingress-nginx
+      version: "4.0.13"
+      sourceRef:
+        kind: HelmRepository
+        name: nginx-stable
+  # values:
+  #   replicas: 1
